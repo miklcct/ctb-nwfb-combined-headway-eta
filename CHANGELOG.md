@@ -1,3 +1,6 @@
+## [1.4.1] (2020-05-30)
+* remove custom colour - use default browser colour instead
+
 ## [1.4.0] (2020-05-30)
 * introduce dark mode
 
