@@ -3,6 +3,8 @@ This is an interface for the Citybus / NWFB ETA API which allows choosing a stop
 and shows the ETA of the upcoming 3 departures combined from a set of routes
 serving the stop.
 
+[There is also a sister project for KMB & LWB available.](https://github.com/miklcct/kmb-lwb-combined-headway-eta)
+
 ## Features
 * ETA automatically refreshes every 15 seconds.
 
@@ -27,8 +29,6 @@ serving the stop.
   Limitation: if the newly-chosen stop serves the same route in the same direction twice,
   e.g. choosing 701 at Mong Kok Market first, then choose Fu Cheong Estate,
   both stopping of 701 will be selected automatically.
-
-[There is also a sister project for KMB & LWB available.](https://github.com/miklcct/kmb-lwb-combined-headway-eta)
 
 ## Installation
 No installation is needed. Clone the repository and open `index.xhtml`.
