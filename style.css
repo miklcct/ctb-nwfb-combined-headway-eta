@@ -22,3 +22,24 @@ select {
 .rdv {
     font-size: 0.7em;
 }
+
+#eta thead tr th:nth-child(1) {
+    width: 15%;
+}
+
+#eta thead tr th:nth-child(2) {
+    width: 10%;
+}
+
+#eta thead tr th:nth-child(3) {
+    width: 30%;
+}
+
+#eta thead tr th:nth-child(4) {
+    width: 10%;
+}
+
+#eta thead tr th:nth-child(5) {
+    width: 25%;
+}
+

@@ -384,6 +384,7 @@ $(document).ready(
                                     .append($('<span/>').text(eta.rdv).addClass('rdv'))
                             )
                             .append($('<td/>').text(eta.destination))
+                            .append($('<td/>').text(eta.distance))
                             .append($('<td/>').text(eta.remark));
                     };
                     $eta_body.empty();
