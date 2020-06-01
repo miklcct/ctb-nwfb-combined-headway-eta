@@ -1,3 +1,6 @@
+## [1.5.0] (2020-06-??)
+* add distance display
+
 ## [1.4.1] (2020-05-30)
 * remove custom colour - use default browser colour instead
 
