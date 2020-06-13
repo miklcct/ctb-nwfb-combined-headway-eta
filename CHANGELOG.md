@@ -1,5 +1,6 @@
-## [1.5.0] (2020-06-??)
+## [1.5.0] (2020-06-13)
 * add distance display
+* fix history handling
 
 ## [1.4.1] (2020-05-30)
 * remove custom colour - use default browser colour instead
