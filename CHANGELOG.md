@@ -1,3 +1,6 @@
+## [1.5.2] (2020-06-23)
+* hardcode a substitution in a problematic route data making 260 ETA @ Stanley fails to load
+
 ## [1.5.1] (2020-06-23)
 * set page title during initialisation
 
