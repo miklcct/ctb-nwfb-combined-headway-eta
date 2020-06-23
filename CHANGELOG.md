@@ -1,3 +1,6 @@
+## [1.5.1] (2020-06-23)
+* set page title during initialisation
+
 ## [1.5.0] (2020-06-13)
 * add distance display
 * fix history handling
