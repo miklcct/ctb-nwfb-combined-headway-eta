@@ -448,13 +448,25 @@ $(document).ready(
                 }
             }
 
+            /**
+             * Substitute stopRoute which is known not producing correct ETAs
+             * @param {StopRoute} stopRoute
+             */
+            function substitute_bugs(stopRoute) {
+                // 260 @ Stanley
+                if (stopRoute.stop.id === 2277 && stopRoute.variant.id === '260-EXS-1') {
+                    return new StopRoute(stopRoute.stop, new Variant(stopRoute.variant.route, '260-EXS-3', 2, 'Normal Routeing', null), 1)
+                }
+                return stopRoute;
+            }
+
             $('#common_route_list option:checked').each(
                 function () {
                     const model = $(this).data('model');
                     if (model !== undefined) {
                         ++count;
                         Eta.get(
-                            model
+                            substitute_bugs(model)
                             , function (/** Array */ etas) {
                                 if (batch === update_eta.batch) {
                                     all_etas.push(...etas);
