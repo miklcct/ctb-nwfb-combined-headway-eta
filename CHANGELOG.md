@@ -1,3 +1,6 @@
+## [1.5.3] (2020-07-03)
+* randomly choose a server to query the API
+
 ## [1.5.2] (2020-06-23)
 * hardcode a substitution in a problematic route data making 260 ETA @ Stanley fails to load
 

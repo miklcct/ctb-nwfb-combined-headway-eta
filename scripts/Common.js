@@ -3,7 +3,14 @@
 const Common = {
     PROXY_URL : 'https://miklcct.com/proxy/',
     SECRET_URL : 'https://miklcct.com/NwfbSecret.json',
-    BASE_URL : 'https://mobile02.nwstbus.com.hk/api6/',
+    BASE_URLS : [
+        'https://mobile01.nwstbus.com.hk/api6/',
+        'https://mobile02.nwstbus.com.hk/api6/',
+        'https://mobile03.nwstbus.com.hk/api6/',
+        'https://mobile04.nwstbus.com.hk/api6/',
+        'https://mobile05.nwstbus.com.hk/api6/',
+        'https://mobile06.nwstbus.com.hk/api6/',
+    ],
 
     /**
      * Get a callback for AJAX to call the NWFB mobile API and process through handler
@@ -54,7 +61,7 @@ const Common = {
             )
         } else {
             $.get(
-                Common.PROXY_URL + Common.BASE_URL + file
+                Common.PROXY_URL + Common.BASE_URLS[Math.floor(Math.random() * Common.BASE_URLS.length)] + file
                 , Object.assign(
                     Object.assign(
                         {
@@ -66,7 +73,13 @@ const Common = {
                     )
                     , query
                 )
-                , Common.getCallbackForMobileApi(callback, preprocess)
+                , function (data) {
+                    if (data === '') {
+                        Common.callApi(file, query, callback, preprocess);
+                    } else {
+                        Common.getCallbackForMobileApi(callback, preprocess)(data);
+                    }
+                }
             );
         }
     },
