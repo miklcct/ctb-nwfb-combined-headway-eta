@@ -457,6 +457,9 @@ $(document).ready(
                 if (stopRoute.stop.id === 2277 && stopRoute.variant.id === '260-EXS-1') {
                     return new StopRoute(stopRoute.stop, new Variant(stopRoute.variant.route, '260-EXS-3', 2, 'Normal Routeing', null), 1)
                 }
+                if (stopRoute.stop.id === 2277 && stopRoute.variant.id === '63-NPF-1') {
+                    return new StopRoute(stopRoute.stop, new Variant(stopRoute.variant.route, '63-NPF-2', 2, 'Normal Routeing', null), 1)
+                }
                 return stopRoute;
             }
 
