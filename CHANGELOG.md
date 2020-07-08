@@ -1,3 +1,6 @@
+## [1.6.0] (2020-07-08)
+* route is now clickable, which will change the form to load the specified route
+
 ## [1.5.3] (2020-07-03)
 * randomly choose a server to query the API
 
