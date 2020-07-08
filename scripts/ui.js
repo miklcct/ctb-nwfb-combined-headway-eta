@@ -87,7 +87,11 @@ $(document).ready(
                                             $common_route_list.children()
                                             , function () {
                                                 const model = $(this).data('model');
-                                                if (model !== undefined && model.variant.id === variant.id) {
+                                                if (
+                                                    click_route.eta !== null
+                                                        ? variant.id === click_route.eta.rdv
+                                                        : model !== undefined && model.variant.id === variant.id
+                                                ) {
                                                     $option.attr('selected', 'selected');
                                                 }
                                             }
@@ -96,6 +100,7 @@ $(document).ready(
                                     }
                                 );
                             $variant_list.removeAttr('disabled');
+                            click_route.eta = null;
                             $variant_list.change();
                         }
                     );
