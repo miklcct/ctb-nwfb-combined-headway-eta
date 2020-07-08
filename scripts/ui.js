@@ -87,7 +87,11 @@ $(document).ready(
                                             $common_route_list.children()
                                             , function () {
                                                 const model = $(this).data('model');
-                                                if (model !== undefined && model.variant.id === variant.id) {
+                                                if (
+                                                    click_route.eta !== null
+                                                        ? variant.id === click_route.eta.rdv
+                                                        : model !== undefined && model.variant.id === variant.id
+                                                ) {
                                                     $option.attr('selected', 'selected');
                                                 }
                                             }
@@ -96,6 +100,7 @@ $(document).ready(
                                     }
                                 );
                             $variant_list.removeAttr('disabled');
+                            click_route.eta = null;
                             $variant_list.change();
                         }
                     );
@@ -407,6 +412,17 @@ $(document).ready(
             }
         );
 
+        const click_route = function () {
+            /** @type {Eta|undefined} */
+            const eta = $(this).closest('tr').data('model')
+            if (eta !== undefined) {
+                click_route.eta = eta;
+                $route_list.val(eta.stopRoute.variant.route.id);
+                $route_list.change();
+            }
+        }
+        click_route.eta = null;
+
         const update_eta = function () {
             $eta_loading.css('visibility', 'visible');
             let count = 0;
@@ -422,12 +438,14 @@ $(document).ready(
                         return $('<tr/>').css('color', eta.colour)
                             .append($('<td/>').text(eta.time === null ? '' : eta.time.hhmmss()).css('font-weight', eta.realTime ? 'bold' : null))
                             .append(
-                                $('<td/>').text(eta.stopRoute.variant.route.number).append('<br/>')
+                                $('<td/>').append($('<span class="route"/>').text(eta.stopRoute.variant.route.number).click(click_route))
+                                    .append('<br/>')
                                     .append($('<span/>').text(eta.rdv).addClass('rdv'))
                             )
                             .append($('<td/>').text(eta.destination))
                             .append($('<td/>').text(eta.distance))
-                            .append($('<td/>').text(eta.remark));
+                            .append($('<td/>').text(eta.remark))
+                            .data('model', eta);
                     };
                     $eta_body.empty();
                     if (Common.getQueryOneDeparture()) {
