@@ -1,3 +1,6 @@
+## [1.6.2] (2020-07-??)
+* clear ETAs when changing stop
+
 ## [1.6.1] (2020-07-08)
 * clear ETAs in initialisation (e.g. when navigating between histories)
 
