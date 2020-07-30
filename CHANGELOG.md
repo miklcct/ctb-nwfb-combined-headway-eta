@@ -1,5 +1,6 @@
-## [1.6.2] (2020-07-??)
+## [1.7.0] (2020-07-30)
 * clear ETAs when changing stop
+* support for 3 languages
 
 ## [1.6.1] (2020-07-08)
 * clear ETAs in initialisation (e.g. when navigating between histories)
