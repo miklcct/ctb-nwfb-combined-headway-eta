@@ -1,3 +1,6 @@
+## [1.8.0] (2020-07-31)
+* preserve selection when clicking language link
+
 ## [1.7.0] (2020-07-30)
 * clear ETAs when changing stop
 * support for 3 languages
