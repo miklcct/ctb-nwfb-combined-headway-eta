@@ -1,3 +1,6 @@
+## [1.8.1] (2020-08-31)
+* do not show past ETAs
+
 ## [1.8.0] (2020-07-31)
 * preserve selection when clicking language link
 
