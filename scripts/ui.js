@@ -499,15 +499,31 @@ $(document).ready(
 
             /**
              * Substitute stopRoute which is known not producing correct ETAs
+             *
+             * These stops will have their ETA missing if it is an origin in a variant and an en-route stop in another
+             * when the en-route stop is selected
+             *
              * @param {StopRoute} stopRoute
              */
             function substitute_bugs(stopRoute) {
-                // 260 @ Stanley
-                if (stopRoute.stop.id === 2277 && stopRoute.variant.id === '260-EXS-1') {
-                    return new StopRoute(stopRoute.stop, new Variant(stopRoute.variant.route, '260-EXS-3', 2, 'Normal Routeing', null), 1)
+                const mappings = {
+                    2277 : { // Stanley
+                        '260-EXS-3' : ['260-EXS-'],
+                        '63-NPF-2' : ['63-NPF-'],
+                    },
+                    2378 : { // Ma Hang
+                        '14-GRP-3' : ['14-GRP-'],
+                    },
+                    2554 : { // Yee Wo Street
+                        '5B-KET-2' : ['5B-KET-'],
+                    }
                 }
-                if (stopRoute.stop.id === 2277 && stopRoute.variant.id === '63-NPF-1') {
-                    return new StopRoute(stopRoute.stop, new Variant(stopRoute.variant.route, '63-NPF-2', 2, 'Normal Routeing', null), 1)
+                if (mappings[stopRoute.stop.id] !== undefined) {
+                    for (const [target, source] of Object.entries(mappings[stopRoute.stop.id])) {
+                        if (stopRoute.variant.id.startsWith(source)) {
+                            return new StopRoute(stopRoute.stop, new Variant(stopRoute.variant.route, target, 0, '', null), 1);
+                        }
+                    }
                 }
                 return stopRoute;
             }
