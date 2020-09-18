@@ -1,13 +1,13 @@
 'use strict';
 
 const Common = {
-    PROXY_URLS : ['https://miklcct.com/proxy/'],
+    PROXY_URLS : ['https://cors-anywhere.herokuapp.com/'],
     SECRET_URL : 'https://miklcct.com/NwfbSecret.json',
     BASE_URLS : [
         'https://mobile01.nwstbus.com.hk/api6/',
         'https://mobile02.nwstbus.com.hk/api6/',
         'https://mobile03.nwstbus.com.hk/api6/',
-        //'https://mobile04.nwstbus.com.hk/api6/',
+        'https://mobile04.nwstbus.com.hk/api6/',
         'https://mobile05.nwstbus.com.hk/api6/',
         'https://mobile06.nwstbus.com.hk/api6/',
     ],
