@@ -1,7 +1,7 @@
 'use strict';
 
 const Common = {
-    PROXY_URL : 'https://miklcct.com/proxy/',
+    PROXY_URLS : ['https://miklcct.com/proxy/', 'https://cors-anywhere.herokuapp.com/'],
     SECRET_URL : 'https://miklcct.com/NwfbSecret.json',
     BASE_URLS : [
         'https://mobile01.nwstbus.com.hk/api6/',
@@ -60,27 +60,45 @@ const Common = {
                 }
             )
         } else {
-            $.get(
-                Common.PROXY_URL + Common.BASE_URLS[Math.floor(Math.random() * Common.BASE_URLS.length)] + file
-                , Object.assign(
-                    Object.assign(
-                        {
-                            p : 'android',
-                            l : Common.getLanguageCode(),
-                            ui_v2 : 'Y',
+            let processed = false;
+            Common.PROXY_URLS.forEach(
+                function (proxy_url) {
+                    $.get(
+                        proxy_url + Common.BASE_URLS[Math.floor(Math.random() * Common.BASE_URLS.length)] + file
+                        , Object.assign(
+                            Object.assign(
+                                {
+                                    p : 'android',
+                                    l : Common.getLanguageCode(),
+                                    ui_v2 : 'Y',
+                                }
+                                , Common.secret
+                            )
+                            , query
+                        )
+                        , function (data) {
+                            if (data === '') {
+                                Common.callApi(
+                                    file
+                                    , query
+                                    , result => {
+                                        if (!processed) {
+                                            processed = true;
+                                            callback(result);
+                                        }
+                                    }
+                                    , preprocess
+                                );
+                            } else {
+                                if (!processed) {
+                                    processed = true;
+                                    Common.getCallbackForMobileApi(callback, preprocess)(data);
+                                }
+                            }
                         }
-                        , Common.secret
-                    )
-                    , query
-                )
-                , function (data) {
-                    if (data === '') {
-                        Common.callApi(file, query, callback, preprocess);
-                    } else {
-                        Common.getCallbackForMobileApi(callback, preprocess)(data);
-                    }
+                    );
                 }
-            );
+            )
         }
     },
     /**
