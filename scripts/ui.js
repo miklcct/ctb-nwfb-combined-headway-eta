@@ -29,13 +29,6 @@ Date.prototype.hhmmss = function () {
                     .append($('<br/>'));
                 $failure.css('display', 'block');
                 debugger;
-            } else {
-                setTimeout(
-                    function () {
-                        $.ajax(ajaxSettings);
-                    }
-                    , 1000
-                );
             }
         }
     );

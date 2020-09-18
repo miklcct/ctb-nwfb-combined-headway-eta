@@ -61,40 +61,37 @@ const Common = {
             )
         } else {
             let processed = false;
+            const retry = () => {
+                Common.callApi(file, query, result => {
+                    if (!processed) {
+                        processed = true;
+                        callback(result);
+                    }
+                }, preprocess);
+            }
             Common.PROXY_URLS.forEach(
                 function (proxy_url) {
                     $.get(
-                        proxy_url + Common.BASE_URLS[Math.floor(Math.random() * Common.BASE_URLS.length)] + file
-                        , Object.assign(
-                            Object.assign(
-                                {
-                                    p : 'android',
-                                    l : Common.getLanguageCode(),
-                                    ui_v2 : 'Y',
-                                }
-                                , Common.secret
-                            )
-                            , query
-                        )
-                        , function (data) {
-                            if (data === '') {
-                                Common.callApi(
-                                    file
-                                    , query
-                                    , result => {
-                                        if (!processed) {
-                                            processed = true;
-                                            callback(result);
-                                        }
+                        {
+                            url : proxy_url +Common.BASE_URLS[Math.floor(Math.random() * Common.BASE_URLS.length)] + file,
+                            data : Object.assign(
+                                Object.assign(
+                                    {
+                                        p : 'android',
+                                        l : Common.getLanguageCode(),
+                                        ui_v2 : 'Y',
                                     }
-                                    , preprocess
-                                );
-                            } else {
+                                    , Common.secret
+                                )
+                                , query
+                            ),
+                            success : function(data) {
                                 if (!processed) {
                                     processed = true;
                                     Common.getCallbackForMobileApi(callback, preprocess)(data);
                                 }
-                            }
+                            },
+                            error : retry
                         }
                     );
                 }
