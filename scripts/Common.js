@@ -170,3 +170,16 @@ const Common = {
 
     secret : null,
 };
+
+setInterval(
+    function () {
+        $.get(
+            Common.SECRET_URL
+            , {}
+            , function (json) {
+                Common.secret = json;
+            }
+        )
+    }
+    , 20000
+);
