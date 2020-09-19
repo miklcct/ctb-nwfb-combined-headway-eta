@@ -11,6 +11,7 @@ const Common = {
         'https://mobile05.nwstbus.com.hk/api6/',
         'https://mobile06.nwstbus.com.hk/api6/',
     ],
+    MAX_RETRY_COUNT : 5,
 
     /**
      * Get a callback for AJAX to call the NWFB mobile API and process through handler
@@ -48,8 +49,12 @@ const Common = {
      * @param {Object<string, string>} query The query string parameters, except the common "syscode" and "l"
      * @param {function(!Array<!Array<string>>)} callback The handler for tokenised data
      * @param {function(string)=} preprocess If specified, preprocess the returned string before tokenising it
+     * @param {int|undefined} retry_count
      */
-    callApi : function (file, query, callback, preprocess) {
+    callApi : function (file, query, callback, preprocess, retry_count) {
+        if (Number(retry_count) === Common.MAX_RETRY_COUNT) {
+            return;
+        }
         if (Common.secret === null) {
             $.get(
                 Common.SECRET_URL
@@ -73,6 +78,7 @@ const Common = {
                             }
                         }
                         , preprocess
+                        , retry_count + 1
                     );
                 }
             }
