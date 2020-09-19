@@ -62,15 +62,23 @@ const Common = {
         } else {
             let processed = false;
             const retry = () => {
-                Common.callApi(file, query, result => {
-                    if (!processed) {
-                        processed = true;
-                        callback(result);
-                    }
-                }, preprocess);
+                if (!processed) {
+                    Common.callApi(
+                        file
+                        , query
+                        , result => {
+                            if (!processed) {
+                                processed = true;
+                                callback(result);
+                            }
+                        }
+                        , preprocess
+                    );
+                }
             }
             Common.PROXY_URLS.forEach(
                 function (proxy_url) {
+                    // noinspection JSUnusedGlobalSymbols
                     $.get(
                         {
                             url : proxy_url +Common.BASE_URLS[Math.floor(Math.random() * Common.BASE_URLS.length)] + file,
@@ -86,6 +94,9 @@ const Common = {
                                 , query
                             ),
                             success : function(data) {
+                                if (data === '') {
+                                    retry();
+                                }
                                 if (!processed) {
                                     processed = true;
                                     Common.getCallbackForMobileApi(callback, preprocess)(data);
