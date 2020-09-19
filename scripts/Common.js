@@ -88,6 +88,8 @@ const Common = {
                                         p : 'android',
                                         l : Common.getLanguageCode(),
                                         ui_v2 : 'Y',
+                                        version : '4.1.2',
+                                        version2 : '65',
                                     }
                                     , Common.secret
                                 )
