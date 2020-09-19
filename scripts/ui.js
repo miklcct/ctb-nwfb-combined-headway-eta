@@ -23,7 +23,7 @@ Date.prototype.hhmmss = function () {
 (function () {
     $(document).ajaxError(
         function (/** Event */ event, /** XMLHttpRequest */ jqXHR, /** Object */ ajaxSettings) {
-            if (jqXHR.readyState === 4 && jqXHR.status < 500) {
+            if (jqXHR.readyState === 4 && jqXHR.status < 500 && jqXHR.status !== 429) {
                 const $failure = $('#failure');
                 $failure.append($('<span/>').text(('AJAX call to ' + ajaxSettings.url + ' failed: ' + jqXHR.status).trim()))
                     .append($('<br/>'));
