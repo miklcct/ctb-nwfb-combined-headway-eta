@@ -1,3 +1,7 @@
+## [1.8.2] (2020-09-19)
+* allow the use of multiple proxies
+* improve handling when API call fails
+
 ## [1.8.1] (2020-08-31)
 * do not show past ETAs
 
