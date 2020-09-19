@@ -1,7 +1,7 @@
 'use strict';
 
 const Common = {
-    PROXY_URLS : ['https://cors-anywhere.herokuapp.com/'],
+    PROXY_URLS : ['https://miklcct.com/proxy/', 'https://cors-anywhere.herokuapp.com/'],
     SECRET_URL : 'https://miklcct.com/NwfbSecret.json',
     BASE_URLS : [
         'https://mobile01.nwstbus.com.hk/api6/',
