@@ -52,7 +52,8 @@ const Common = {
      * @param {int|undefined} retry_count
      */
     callApi : function (file, query, callback, preprocess, retry_count) {
-        if (Number(retry_count) === Common.MAX_RETRY_COUNT) {
+        if (retry_count === undefined) retry_count = 0;
+        if (retry_count === Common.MAX_RETRY_COUNT) {
             return;
         }
         if (Common.secret === null) {
@@ -61,60 +62,60 @@ const Common = {
                 , {}
                 , function (json) {
                     Common.secret = json;
-                    Common.callApi(file, query, callback, preprocess);
+                    Common.callApi(file, query, callback, preprocess, retry_count);
                 }
             )
         } else {
             let processed = false;
             const retry = () => {
-                if (!processed) {
-                    Common.callApi(
-                        file
-                        , query
-                        , result => {
-                            if (!processed) {
-                                processed = true;
-                                callback(result);
-                            }
+                Common.callApi(
+                    file
+                    , query
+                    , result => {
+                        if (!processed) {
+                            processed = true;
+                            callback(result);
                         }
-                        , preprocess
-                        , retry_count + 1
-                    );
-                }
+                    }
+                    , preprocess
+                    , retry_count + 1
+                );
             }
             Common.PROXY_URLS.forEach(
                 function (proxy_url) {
-                    // noinspection JSUnusedGlobalSymbols
-                    $.get(
-                        {
-                            url : proxy_url +Common.BASE_URLS[Math.floor(Math.random() * Common.BASE_URLS.length)] + file,
-                            data : Object.assign(
-                                Object.assign(
-                                    {
-                                        p : 'android',
-                                        l : Common.getLanguageCode(),
-                                        ui_v2 : 'Y',
-                                        version : '4.1.2',
-                                        version2 : '65',
+                    if (!processed) {
+                        // noinspection JSUnusedGlobalSymbols
+                        $.get(
+                            {
+                                url : proxy_url + Common.BASE_URLS[Math.floor(Math.random() * Common.BASE_URLS.length)] + file,
+                                data : Object.assign(
+                                    Object.assign(
+                                        {
+                                            p : 'android',
+                                            l : Common.getLanguageCode(),
+                                            ui_v2 : 'Y',
+                                            version : '4.1.2',
+                                            version2 : '65',
+                                        }
+                                        , Common.secret
+                                    )
+                                    , query
+                                ),
+                                success : function (data) {
+                                    if (data === '') {
+                                        retry();
                                     }
-                                    , Common.secret
-                                )
-                                , query
-                            ),
-                            success : function(data) {
-                                if (data === '') {
-                                    retry();
-                                }
-                                if (!processed) {
-                                    processed = true;
-                                    Common.getCallbackForMobileApi(callback, preprocess)(data);
-                                }
-                            },
-                            error : retry
-                        }
-                    );
+                                    if (!processed) {
+                                        processed = true;
+                                        Common.getCallbackForMobileApi(callback, preprocess)(data);
+                                    }
+                                },
+                                error : retry
+                            }
+                        );
+                    }
                 }
-            )
+            );
         }
     },
     /**
