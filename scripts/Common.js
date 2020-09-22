@@ -104,8 +104,7 @@ const Common = {
                                 success : function (data) {
                                     if (data === '') {
                                         retry();
-                                    }
-                                    if (!processed) {
+                                    } else if (!processed) {
                                         processed = true;
                                         Common.getCallbackForMobileApi(callback, preprocess)(data);
                                     }
