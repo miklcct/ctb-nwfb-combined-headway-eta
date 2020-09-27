@@ -68,17 +68,20 @@ const Common = {
         } else {
             let processed = false;
             const retry = () => {
-                Common.callApi(
-                    file
-                    , query
-                    , result => {
-                        if (!processed) {
-                            processed = true;
-                            callback(result);
+                setTimeout(
+                    Common.callApi(
+                        file
+                        , query
+                        , result => {
+                            if (!processed) {
+                                processed = true;
+                                callback(result);
+                            }
                         }
-                    }
-                    , preprocess
-                    , retry_count + 1
+                        , preprocess
+                        , retry_count + 1
+                    )
+                    , 1000
                 );
             }
             Common.PROXY_URLS.forEach(
@@ -91,11 +94,10 @@ const Common = {
                                 data : Object.assign(
                                     Object.assign(
                                         {
-                                            p : 'android',
+                                            p : 'iphone',
                                             l : Common.getLanguageCode(),
                                             ui_v2 : 'Y',
                                             version : '4.1.2',
-                                            version2 : '65',
                                         }
                                         , Common.secret
                                     )
