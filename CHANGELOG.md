@@ -1,3 +1,7 @@
+## [1.8.3] (2020-09-27)
+* update API calling method
+* further improve failure handling
+
 ## [1.8.2] (2020-09-19)
 * allow the use of multiple proxies
 * improve handling when API call fails
