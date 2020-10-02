@@ -61,7 +61,7 @@ const Common = {
                 Common.SECRET_URL
                 , {}
                 , function (json) {
-                    Common.secret = json;
+                    Common.secret = {appid : json.appid, syscode5 : json.syscode5};
                     Common.callApi(file, query, callback, preprocess, retry_count);
                 }
             )
@@ -178,7 +178,7 @@ setInterval(
             Common.SECRET_URL
             , {}
             , function (json) {
-                Common.secret = json;
+                Common.secret = {appid : json.appid, syscode5 : json.syscode5};
             }
         )
     }
