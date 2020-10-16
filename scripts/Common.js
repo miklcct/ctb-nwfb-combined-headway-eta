@@ -4,12 +4,7 @@ const Common = {
     PROXY_URLS : ['https://miklcct.com/proxy/', 'https://cors-anywhere.herokuapp.com/'],
     SECRET_URL : 'https://miklcct.com/NwfbSecret.json',
     BASE_URLS : [
-        'https://mobile01.nwstbus.com.hk/api6/',
-        'https://mobile02.nwstbus.com.hk/api6/',
-        'https://mobile03.nwstbus.com.hk/api6/',
-        'https://mobile04.nwstbus.com.hk/api6/',
-        'https://mobile05.nwstbus.com.hk/api6/',
-        'https://mobile06.nwstbus.com.hk/api6/',
+        'https://mobile02.nwstbus.com.hk/api6_test/',
     ],
     MAX_RETRY_COUNT : 5,
 
