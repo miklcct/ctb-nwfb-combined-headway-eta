@@ -48,6 +48,9 @@ Eta.get = function (stopRoute, callback) {
         , {
             mode : '3eta',
             service_no : stopRoute.variant.route.number,
+            removeRepeatedSuspend: 'Y',
+            interval : 60,
+            showtime : 'Y',
             stopseq : stopRoute.sequence,
             stopid : stopRoute.stop.id,
             rdv : stopRoute.variant.id,

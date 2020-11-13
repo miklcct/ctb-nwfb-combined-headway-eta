@@ -4,7 +4,12 @@ const Common = {
     PROXY_URLS : ['https://miklcct.com/proxy/', 'https://cors-anywhere.herokuapp.com/'],
     SECRET_URL : 'https://miklcct.com/NwfbSecret.json',
     BASE_URLS : [
-        'https://mobile02.nwstbus.com.hk/api6_test/',
+        'https://mobile01.nwstbus.com.hk/api6/',
+        'https://mobile02.nwstbus.com.hk/api6/',
+        'https://mobile03.nwstbus.com.hk/api6/',
+        //'https://mobile04.nwstbus.com.hk/api6/',
+        'https://mobile05.nwstbus.com.hk/api6/',
+        'https://mobile06.nwstbus.com.hk/api6/',
     ],
     MAX_RETRY_COUNT : 5,
 
@@ -89,10 +94,11 @@ const Common = {
                                 data : Object.assign(
                                     Object.assign(
                                         {
-                                            p : 'iphone',
+                                            p : 'android',
                                             l : Common.getLanguageCode(),
                                             ui_v2 : 'Y',
-                                            version : '4.1.2',
+                                            version : '4.1.7',
+                                            version2 : 69,
                                         }
                                         , Common.secret
                                     )
