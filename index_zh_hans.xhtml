@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-hans" lang="zh-hans">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="style.css" />
@@ -13,41 +13,41 @@
         <script src="scripts/Variant.js"></script>
         <script src="scripts/Eta.js"></script>
         <script src="scripts/ui.js"></script>
-        <title>Citybus &amp; NWFB combined ETA</title>
+        <title>城巴及新巴联合班次到站时间预报</title>
     </head>
     <body>
         <table id="eta">
             <thead>
-                <tr><th>Time</th><th>Route</th><th>Destination</th><th>Distance (m)</th><th>Remark</th></tr>
+                <tr><th>时间</th><th>路线</th><th>目的地</th><th>距离（米）</th><th>备註</th></tr>
             </thead>
             <tbody />
         </table>
         <div>
-            <div id="eta_loading">Loading</div>
-            <div>Last updated: <span id="eta_last_updated"/></div>
+            <div id="eta_loading">载入中</div>
+            <div>最後更新：<span id="eta_last_updated"/></div>
         </div>
         <p id="failure"/>
         <form>
             <p>
-                <label>Enter the route number: <input id="route" name="route" maxlength="4" disabled="disabled"/></label><br/>
-                <label>or choose a route in the list:<br/><select id="route_list" disabled="disabled"/></label><br/>
+                <label>输入路线编号：<input id="route" name="route" maxlength="4" disabled="disabled"/></label><br/>
+                <label>或从清单中选择路线：<br/><select id="route_list" disabled="disabled"/></label><br/>
                 <input type="submit" id="route_submit" disabled="disabled"/>
-                <button id="switch_direction" type="button" disabled="disabled">Switch direction</button><br/>
-                <label>Choose a route variant: <select id="variant_list" name="variant" disabled="disabled"/></label><br/>
+                <button id="switch_direction" type="button" disabled="disabled">切换方向</button><br/>
+                <label>选择路线变体：<select id="variant_list" name="variant" disabled="disabled"/></label><br/>
             </p>
         </form>
         <form id="form">
             <p>
-                <label>Choose a stop in the list: <select id="stop_list" name="stop" disabled="disabled"/></label>
+                <label>从清单中选择车站：<select id="stop_list" name="stop" disabled="disabled"/></label>
             </p>
-            <p><label><input type="checkbox" id="one_departure" name="one_departure" />Show the first departure only for each variant</label></p>
+            <p><label><input type="checkbox" id="one_departure" name="one_departure" />只显示每个变体首个班次</label></p>
             <p>
-                <label>Route serving the stop selected: <select multiple="multiple" id="common_route_list" name="selections" disabled="disabled"/></label>
+                <label>服务已选车站之路线：<select multiple="multiple" id="common_route_list" name="selections" disabled="disabled"/></label>
             </p>
         </form>
         <p>
-            © Michael Tsang 2020, released under <a href="https://opensource.org/licenses/AGPL-3.0">AGPL 3.0 Licence</a>.<br/>
-            <a href="https://github.com/miklcct/ctb-nwfb-combined-headway-eta">Source available on Github.</a>
+            © Michael Tsang 2020, 於<a href="https://opensource.org/licenses/AGPL-3.0">AGPL 3.0 授权协议</a>下发佈。<br/>
+            <a href="https://github.com/miklcct/ctb-nwfb-combined-headway-eta">原始码於 Github 发佈。</a>
         </p>
         <nav>
             <a id="en_link" lang="en" xml:lang="en" href="index.xhtml">English</a>

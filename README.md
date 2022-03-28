@@ -7,7 +7,8 @@ serving the stop.
 This project is no longer maintained. I can no longer access the API used in the
 Citybus / NWFB mobile app, which offers the information needed for this project
 to work correctly including call sequence and destination which don't appear
-in the government open data portal. Meanwhile, the sister project for KMB / LWB
+in the government open data portal. Meanwhile, 
+[the sister project for KMB / LWB](https://github.com/miklcct/kmb-lwb-combined-headway-eta)
 has been modernised as a Node.js library written in Typescript so any further
 development, if it happens again, will be based on that.
 
@@ -34,10 +35,7 @@ development, if it happens again, will be based on that.
   
   Limitation: if the newly-chosen stop serves the same route in the same direction twice,
   e.g. choosing 701 at Mong Kok Market first, then choose Fu Cheong Estate,
-  both stopping of 701 will be selected automatically; if the original stop serves the same route
-  in the same direction twice, it will not be automatically selected when another stop is selected,
-  e.g. choosing any of the 701 at Fu Cheong Estate first, then choose Mong Kok Market, no 701 is selected automatically.
-
+  both stopping of 701 will be selected automatically.
 
 ## Installation
 No installation is needed. Clone the repository and open `index.xhtml`.
