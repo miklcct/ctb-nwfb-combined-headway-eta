@@ -3,6 +3,14 @@ This is an interface for the Citybus / NWFB ETA API which allows choosing a stop
 and shows the ETA of the upcoming 3 departures combined from a set of routes
 serving the stop.
 
+## Not maintained
+This project is no longer maintained. I can no longer access the API used in the
+Citybus / NWFB mobile app, which offers the information needed for this project
+to work correctly including call sequence and destination which don't appear
+in the government open data portal. Meanwhile, the sister project for KMB / LWB
+has been modernised as a Node.js library written in Typescript so any further
+development, if it happens again, will be based on that.
+
 ## Features
 * ETA automatically refreshes every 15 seconds.
 
